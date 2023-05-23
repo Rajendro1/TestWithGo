@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/Rajendro1/Projects/AccuKnoxApi/config"
+	"github.com/Rajendro1/AccuKnox/config"
 	"github.com/gin-gonic/gin"
 )
 

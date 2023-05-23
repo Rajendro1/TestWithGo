@@ -1,7 +1,7 @@
 package main
 
 import (
-	pgdatabase "github.com/Rajendro1/Projects/AccuKnoxApi/pgDatabase"
+	pgdatabase "github.com/Rajendro1/AccuKnox/pgDatabase"
 
 	"github.com/gin-gonic/gin"
 	_ "github.com/lib/pq"
@@ -9,5 +9,5 @@ import (
 
 func main() {
 	pgdatabase.Connect(&gin.Context{})
-	routers.HandleRequest()
+	// router.HandleRequest()
 }

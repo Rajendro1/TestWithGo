@@ -3,8 +3,9 @@ package notes
 import (
 	"log"
 
-	"github.com/Rajendro1/Projects/AccuKnoxApi/config"
-	pgdatabase "github.com/Rajendro1/Projects/AccuKnoxApi/pgDatabase"
+	"github.com/Rajendro1/AccuKnox/config"
+	pgdatabase "github.com/Rajendro1/AccuKnox/pgDatabase"
+
 	"github.com/gin-gonic/gin"
 )
 

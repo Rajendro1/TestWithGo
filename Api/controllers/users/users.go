@@ -3,9 +3,9 @@ package users
 import (
 	"log"
 
-	util "github.com/Rajendro1/Projects/AccuKnoxApi/Util"
-	"github.com/Rajendro1/Projects/AccuKnoxApi/config"
-	pgdatabase "github.com/Rajendro1/Projects/AccuKnoxApi/pgDatabase"
+	util "github.com/Rajendro1/AccuKnox/Util"
+	"github.com/Rajendro1/AccuKnox/config"
+	pgdatabase "github.com/Rajendro1/AccuKnox/pgDatabase"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 )

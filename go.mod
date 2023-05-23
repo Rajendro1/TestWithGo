@@ -1,12 +1,13 @@
-module github.com/Rajendro1/Projects/AccuKnoxApi
+module github.com/Rajendro1/AccuKnox
 
 go 1.20
 
 require (
+	github.com/Rajendro1/Projects/AccuKnoxApi v0.0.0-20230523012558-4f62d3dc5dab
 	github.com/gin-gonic/gin v1.9.0
 	github.com/google/uuid v1.3.0
 	github.com/lib/pq v1.10.9
-	golang.org/x/crypto v0.5.0
+	golang.org/x/crypto v0.9.0
 )
 
 require (
@@ -27,9 +28,9 @@ require (
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	github.com/ugorji/go/codec v1.2.9 // indirect
 	golang.org/x/arch v0.0.0-20210923205945-b76863e36670 // indirect
-	golang.org/x/net v0.7.0 // indirect
-	golang.org/x/sys v0.5.0 // indirect
-	golang.org/x/text v0.7.0 // indirect
+	golang.org/x/net v0.10.0 // indirect
+	golang.org/x/sys v0.8.0 // indirect
+	golang.org/x/text v0.9.0 // indirect
 	google.golang.org/protobuf v1.28.1 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )

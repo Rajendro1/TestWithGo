@@ -3,9 +3,9 @@ package routers
 import (
 	"net/http"
 
-	"github.com/Rajendro1/Projects/AccuKnoxApi/Api/controllers/notes"
-	"github.com/Rajendro1/Projects/AccuKnoxApi/Api/controllers/users"
-	"github.com/Rajendro1/Projects/AccuKnoxApi/config"
+	"github.com/Rajendro1/AccuKnox/Api/controllers/notes"
+	"github.com/Rajendro1/AccuKnox/Api/controllers/users"
+	"github.com/Rajendro1/AccuKnox/config"
 	"github.com/gin-gonic/gin"
 )
 
