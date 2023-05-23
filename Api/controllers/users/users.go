@@ -24,26 +24,61 @@ func CreateUsers() gin.HandlerFunc {
 				})
 				return
 			}
-			createUsers, userID, createUsersErr := pgdatabase.CreateUsersToDatabase(input.Email, input.Name, hashPassword)
-			if createUsers && createUsersErr == nil {
-				getUsers, getUsersErr := pgdatabase.GetUsersByIdFromDatabase(userID)
-				if getUsersErr != nil {
-					c.JSON(config.SUCCESS, gin.H{
-						"status":  config.DBERROR,
+			if input.Email == "" {
+				c.JSON(config.INPUTERROR, gin.H{
+					"status":  config.INPUTERROR,
+					"message": "Please give email id",
+				})
+				return
+			}
+			if !util.IsEmailValid(input.Email) {
+				c.JSON(config.INPUTERROR, gin.H{
+					"status":  config.INPUTERROR,
+					"message": "Please give valid email",
+				})
+				return
+			}
+			if input.Password == "" {
+				c.JSON(config.INPUTERROR, gin.H{
+					"status":  config.INPUTERROR,
+					"message": "Please give password",
+				})
+				return
+			}
+			if input.Name == "" {
+				c.JSON(config.INPUTERROR, gin.H{
+					"status":  config.INPUTERROR,
+					"message": "Please give Name",
+				})
+				return
+			}
+			if !pgdatabase.VerifyUsersEmailToDatabase(input.Email) {
+				createUsers, userID, createUsersErr := pgdatabase.CreateUsersToDatabase(input.Email, input.Name, hashPassword)
+				if createUsers && createUsersErr == nil {
+					getUsers, getUsersErr := pgdatabase.GetUsersByIdFromDatabase(userID)
+					if getUsersErr != nil {
+						c.JSON(config.SUCCESS, gin.H{
+							"status":  config.DBERROR,
+							"message": "Sorry! we can't create your users",
+						})
+					} else {
+						c.JSON(config.SUCCESS, gin.H{
+							"status":  config.CREATED,
+							"message": "User created successfully",
+							"data":    getUsers,
+						})
+					}
+				} else if createUsersErr != nil {
+					c.JSON(200, gin.H{
 						"message": "Sorry! we can't create your users",
-					})
-				} else {
-					c.JSON(config.SUCCESS, gin.H{
-						"status":  config.CREATED,
-						"message": "User created successfully",
-						"data":    getUsers,
+						"status":  config.DBERROR,
+						"error":   createUsersErr.Error(),
 					})
 				}
-			} else if createUsersErr != nil {
-				c.JSON(200, gin.H{
-					"message": "Sorry! we can't create your users",
-					"status":  config.DBERROR,
-					"error":   createUsersErr.Error(),
+			} else {
+				c.JSON(config.DUPLICATE, gin.H{
+					"status":  config.DUPLICATE,
+					"message": "This email already registerd with us",
 				})
 			}
 		} else {
@@ -61,6 +96,27 @@ func PostLogin() gin.HandlerFunc {
 	fn := func(c *gin.Context) {
 		var input = users{}
 		if err := c.ShouldBindJSON(&input); err == nil {
+			if input.Email == "" {
+				c.JSON(config.INPUTERROR, gin.H{
+					"status":  config.INPUTERROR,
+					"message": "Please give email id",
+				})
+				return
+			}
+			if !util.IsEmailValid(input.Email) {
+				c.JSON(config.INPUTERROR, gin.H{
+					"status":  config.INPUTERROR,
+					"message": "Please give valid email",
+				})
+				return
+			}
+			if input.Password == "" {
+				c.JSON(config.INPUTERROR, gin.H{
+					"status":  config.INPUTERROR,
+					"message": "Please give password",
+				})
+				return
+			}
 			if pgdatabase.VerifyUsersEmailToDatabase(input.Email) {
 				getUsers, getUsersErr := pgdatabase.GetUsersByEmailFromDatabase(input.Email)
 				if getUsersErr != nil {
@@ -90,7 +146,7 @@ func PostLogin() gin.HandlerFunc {
 				} else {
 					c.JSON(config.UNAUTHORIZE, gin.H{
 						"status":  config.UNAUTHORIZE,
-						"message": "Sorry! your password is not match",
+						"message": "Sorry! your password did not match with our database",
 					})
 				}
 

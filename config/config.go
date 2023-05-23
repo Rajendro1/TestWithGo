@@ -9,4 +9,5 @@ var (
 	UNAUTHORIZE   = 401
 	NOTFOUND      = 4004
 	NOTMATCH      = 4005
+	DUPLICATE     = 409
 )

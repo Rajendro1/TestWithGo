@@ -1,13 +1,15 @@
-FROM golang:alpine as builder
-WORKDIR /app
-COPY go.mod .
-COPY go.sum .
-RUN apk add build-base
-RUN go mod download
-COPY . .
-RUN apk add --no-cache git && go build -o platform . && apk del git
+# Use a Go image as the base
+FROM golang:latest
+RUN apt-get update && apt-get install -y nano
 
-FROM alpine
+# Set the working directory
 WORKDIR /app
-COPY --from=builder /app/api .
-CMD [ "./api" ]
+
+# Copy the Go source code into the container
+COPY . .
+
+# Build the Go application
+RUN go build -o app
+
+# Set the command to run when the container starts
+CMD [ "./app" ]

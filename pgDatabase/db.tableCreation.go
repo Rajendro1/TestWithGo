@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS public.notes
     id SERIAL PRIMARY KEY,
     session_id text DEFAULT NULL,
     user_id int DEFAULT NULL,
-    note text DEFAULT NULL,
+    note text DEFAULT NULL
 );
+
 `

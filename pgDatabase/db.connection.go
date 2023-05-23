@@ -35,8 +35,9 @@ func Connect(c *gin.Context) {
 		log.Println("**************Table****************")
 		log.Println(tableExecErr.Error())
 		log.Println("***************Table***************")
+	} else {
+		log.Println("create table successfully")
 	}
-	log.Println("create table successfully")
 }
 func createpgdatabase(c *gin.Context, url string) {
 	pgdatabaseCon, err := sql.Open("postgres", url)

@@ -13,11 +13,25 @@ func CreateNotes() gin.HandlerFunc {
 	fn := func(c *gin.Context) {
 		var input = notes{}
 		if err := c.ShouldBindJSON(&input); err == nil {
+			if input.SID == "" {
+				c.JSON(config.INPUTERROR, gin.H{
+					"status":  config.INPUTERROR,
+					"message": "Please give sid",
+				})
+				return
+			}
+			if input.Note == "" {
+				c.JSON(config.INPUTERROR, gin.H{
+					"status":  config.INPUTERROR,
+					"message": "Please give note",
+				})
+				return
+			}
 			if pgdatabase.VerifyUsersSessionIDToDatabase(input.SID) {
 				createNote, noteID, createNoteErr := pgdatabase.CreateNotesToDatabase(input.SID, input.Note)
 				if createNote && createNoteErr == nil {
 					c.JSON(config.SUCCESS, gin.H{
-						"status":  config.SUCCESS,
+						"status":  config.CREATED,
 						"message": "Note created successfully",
 						"id":      noteID,
 					})
@@ -49,6 +63,20 @@ func DeleteNote() gin.HandlerFunc {
 	fn := func(c *gin.Context) {
 		var input = notes{}
 		if err := c.ShouldBindJSON(&input); err == nil {
+			if input.SID == "" {
+				c.JSON(config.INPUTERROR, gin.H{
+					"status":  config.INPUTERROR,
+					"message": "Please give sid",
+				})
+				return
+			}
+			if input.ID == 0 {
+				c.JSON(config.INPUTERROR, gin.H{
+					"status":  config.INPUTERROR,
+					"message": "Please give id",
+				})
+				return
+			}
 			if pgdatabase.VerifyUsersSessionIDToDatabase(input.SID) && pgdatabase.VerifyNotesIdToDatabase(input.ID) {
 				deleteNote, deleteNoteErr := pgdatabase.DeleteNoteToDatabase(input.SID, input.ID)
 				if deleteNote && deleteNoteErr == nil {
@@ -88,6 +116,13 @@ func GetNotes() gin.HandlerFunc {
 	fn := func(c *gin.Context) {
 		var input = notes{}
 		if err := c.ShouldBindJSON(&input); err == nil {
+			if input.SID == "" {
+				c.JSON(config.INPUTERROR, gin.H{
+					"status":  config.INPUTERROR,
+					"message": "Please give sid",
+				})
+				return
+			}
 			if pgdatabase.VerifyUsersSessionIDToDatabase(input.SID) {
 				getNotesBySid, getNotesBySidErr := pgdatabase.GetNotesBySessionIdFromDatabase(input.SID)
 				if getNotesBySidErr == nil {
