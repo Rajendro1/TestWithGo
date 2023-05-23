@@ -1,5 +1,5 @@
 # Use a Go image as the base
-FROM golang:latest
+FROM docker.io/golang:latest
 RUN apt-get update && apt-get install -y nano
 
 # Install PostgreSQL
