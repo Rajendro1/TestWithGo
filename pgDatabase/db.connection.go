@@ -15,9 +15,9 @@ var (
 )
 
 func Connect(c *gin.Context) {
-	var POSTGRES_URL_WITH_DATASBE string = "postgres://" + os.Getenv("DB_USERNAME") + ":" + os.Getenv("DB_PASSWORD") + "@" + os.Getenv("DB_HOST") + "/" + os.Getenv("DB_NAME") + "?sslmode=" + os.Getenv("DB_SSL_MODE") + ""
+	var POSTGRES_URL_WITH_DATASBE string = "postgres://" + os.Getenv("DB_USERNAME") + ":" + os.Getenv("DB_PASSWORD") + "@" + os.Getenv("DB_HOST") + ":" + os.Getenv("DB_PORT") + "/" + os.Getenv("DB_NAME") + "?sslmode=" + os.Getenv("DB_SSL_MODE") + ""
 
-	var POSTGRES_URL_WITHOUT_DATASBE string = "postgres://" + os.Getenv("DB_USERNAME") + ":" + os.Getenv("DB_PASSWORD") + "@" + os.Getenv("DB_HOST") + "/?sslmode=" + os.Getenv("DB_SSL_MODE") + ""
+	var POSTGRES_URL_WITHOUT_DATASBE string = "postgres://" + os.Getenv("DB_USERNAME") + ":" + os.Getenv("DB_PASSWORD") + "@" + os.Getenv("DB_HOST") + ":" + os.Getenv("DB_PORT") + "/?sslmode=" + os.Getenv("DB_SSL_MODE") + ""
 
 	log.Println(POSTGRES_URL_WITH_DATASBE)
 	log.Println(POSTGRES_URL_WITHOUT_DATASBE)

@@ -2,8 +2,9 @@
 FROM docker.io/golang:latest
 RUN apt-get update && apt-get install -y nano
 
-# Install PostgreSQL
-RUN apt-get update && apt-get install -y nano postgresql
+
+# Install PostgreSQL client library
+RUN apt-get update && apt-get install -y postgresql-client
 
 # Set the working directory
 WORKDIR /app
