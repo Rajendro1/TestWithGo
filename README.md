@@ -15,8 +15,9 @@ docker pull postgres
 ```
 sudo docker run --name="postgres" --rm -d -p 5433:5432 -e POSTGRES_PASSWORD=perfectPassword -e POSTGRES_USER=postgres -e POSTGRES_DB=accuknox -d postgres
 ```
-4. Modify the .env DB_HOST with your current docker host
+4. copy .env file file form my repo and modify DB_HOST with your current docker host
 ```
+
 ip addr show docker0 | grep -Po 'inet \K[\d.]+'
 ```
 
