@@ -2,6 +2,9 @@
 FROM golang:latest
 RUN apt-get update && apt-get install -y nano
 
+# Install PostgreSQL
+RUN apt-get update && apt-get install -y nano postgresql
+
 # Set the working directory
 WORKDIR /app
 
