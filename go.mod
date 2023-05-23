@@ -3,7 +3,6 @@ module github.com/Rajendro1/AccuKnox
 go 1.20
 
 require (
-	github.com/Rajendro1/Projects/AccuKnoxApi v0.0.0-20230523012558-4f62d3dc5dab
 	github.com/gin-gonic/gin v1.9.0
 	github.com/google/uuid v1.3.0
 	github.com/lib/pq v1.10.9
