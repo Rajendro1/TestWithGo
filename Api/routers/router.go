@@ -2,6 +2,7 @@ package routers
 
 import (
 	"net/http"
+	"strconv"
 
 	"github.com/Rajendro1/AccuKnox/Api/controllers/notes"
 	"github.com/Rajendro1/AccuKnox/Api/controllers/users"
@@ -35,5 +36,5 @@ func HandleRequest() {
 	r.POST("/notes", notes.CreateNotes())
 	r.DELETE("/notes", notes.DeleteNote())
 
-	r.Run(":" + config.APP_HTTP_PORT)
+	r.Run(":" + strconv.Itoa(config.APP_HTTP_PORT))
 }

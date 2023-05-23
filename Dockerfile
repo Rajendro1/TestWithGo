@@ -14,5 +14,7 @@ COPY . .
 # Build the Go application
 RUN go build -o app
 
+EXPOSE 8081
+
 # Set the command to run when the container starts
 CMD [ "./app" ]
