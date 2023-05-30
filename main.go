@@ -6,9 +6,9 @@ import (
 
 	"github.com/Rajendro1/AccuKnox/Api/routers"
 	pgdatabase "github.com/Rajendro1/AccuKnox/pgDatabase"
+	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 
-	"github.com/gin-gonic/gin"
 	_ "github.com/lib/pq"
 )
 

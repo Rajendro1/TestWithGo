@@ -8,7 +8,7 @@ sudo docker pull ghcr.io/rajendro1/accuknox-api-main:latest
 
 2. Pull postgres image
 ```
-docker pull postgres
+sudo docker pull postgres
 ```
 
 3. Run postgres image
